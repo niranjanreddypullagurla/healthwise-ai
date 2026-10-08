@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HealthWise AI | Personal Healthcare Recommender</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="brand-icon">❤</div>
+        <div>
+            <h2>HealthWise</h2>
+            <span>AI Healthcare</span>
+        </div>
+    </div>
+
+    <nav>
+        <button class="nav-item active" data-section="dashboard">
+            <span>⌂</span> Dashboard
+        </button>
+
+        <button class="nav-item" data-section="assessment">
+            <span>🩺</span> Health Assessment
+        </button>
+
+        <button class="nav-item" data-section="recommendations">
+            <span>✦</span> Recommendations
+        </button>
+
+        <button class="nav-item" data-section="tracker">
+            <span>◷</span> Health Tracker
+        </button>
+
+        <button class="nav-item" data-section="history">
+            <span>▤</span> History
+        </button>
+
+        <button class="nav-item" data-section="profile">
+            <span>♙</span> Profile
+        </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="doctor-card">
+            <div class="doctor-icon">+</div>
+            <div>
+                <strong>Need medical help?</strong>
+                <small>Consult a professional</small>
+            </div>
+        </div>
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button class="menu-btn" id="menuBtn">☰</button>
+
+        <div class="page-title">
+            <h1 id="pageTitle">Good morning, <span id="headerName">Niru</span> 👋</h1>
+            <p id="pageSubtitle">
+                Here's your personalized health overview.
+            </p>
+        </div>
+
+        <div class="top-actions">
+
+            <button class="notification-btn" id="notificationBtn">
+                🔔
+                <span></span>
+            </button>
+
+            <div class="avatar" id="avatar">
+                N
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section class="section active" id="dashboard">
+
+        <div class="welcome-card">
+
+            <div class="welcome-content">
+                <span class="eyebrow">AI HEALTH INSIGHT</span>
+
+                <h2>
+                    Your health,
+                    <br>
+                    <span>simplified.</span>
+                </h2>
+
+                <p>
+                    Get personalized wellness recommendations based on
+                    your symptoms, lifestyle and health goals.
+                </p>
+
+                <button class="primary-btn" data-go="assessment">
+                    Start Health Assessment →
+                </button>
+            </div>
+
+            <div class="health-orbit">
+
+                <div class="orbit-ring"></div>
+
+                <div class="heart-center">
+                    ❤
+                </div>
+
+                <div class="orbit-dot dot-1">💧</div>
+                <div class="orbit-dot dot-2">🥗</div>
+                <div class="orbit-dot dot-3">😴</div>
+                <div class="orbit-dot dot-4">🏃</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HEALTH SCORE -->
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">TODAY</span>
+                <h2>Health Overview</h2>
+            </div>
+
+            <span class="date-label" id="todayDate"></span>
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+                    <span>Health Score</span>
+                    <div class="stat-icon green">❤</div>
+                </div>
+
+                <div class="score-row">
+
+                    <div class="big-number" id="healthScore">
+                        82
+                    </div>
+
+                    <span class="score-unit">/100</span>
+
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill green-fill" id="healthProgress"></div>
+                </div>
+
+                <small class="positive" id="healthMessage">
+                    Excellent health habits
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+                    <span>Water Intake</span>
+                    <div class="stat-icon blue">💧</div>
+                </div>
+
+                <div class="score-row">
+                    <div class="big-number" id="waterValue">4</div>
+                    <span class="score-unit">/8 glasses</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill blue-fill" id="waterProgress"></div>
+                </div>
+
+                <small>Daily hydration goal</small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+                    <span>Sleep</span>
+                    <div class="stat-icon purple">☾</div>
+                </div>
+
+                <div class="score-row">
+                    <div class="big-number" id="sleepValue">7.2</div>
+                    <span class="score-unit">hours</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill purple-fill" id="sleepProgress"></div>
+                </div>
+
+                <small>Recommended: 7–9 hours</small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+                    <span>Activity</span>
+                    <div class="stat-icon orange">🏃</div>
+                </div>
+
+                <div class="score-row">
+                    <div class="big-number" id="stepsValue">6,842</div>
+                    <span class="score-unit">steps</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill orange-fill" id="stepsProgress"></div>
+                </div>
+
+                <small>Goal: 8,000 steps</small>
+
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD LOWER -->
+
+        <div class="dashboard-grid">
+
+            <div class="panel chart-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">WELLNESS</span>
+                        <h3>Health Trends</h3>
+                    </div>
+
+                    <select id="chartPeriod">
+                        <option>7 Days</option>
+                        <option>30 Days</option>
+                    </select>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="healthChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <div class="panel ai-panel">
+
+                <div class="ai-header">
+
+                    <div class="ai-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">AI INSIGHT</span>
+                        <h3>Today's Recommendation</h3>
+                    </div>
+
+                </div>
+
+                <div class="ai-recommendation">
+
+                    <div class="recommendation-icon">
+                        💧
+                    </div>
+
+                    <div>
+                        <h4>Increase your water intake</h4>
+
+                        <p>
+                            You're currently at 4 glasses. Try drinking
+                            another 2–4 glasses throughout the day.
+                        </p>
+                    </div>
+
+                </div>
+
+                <button class="secondary-btn" data-go="recommendations">
+                    View all recommendations
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="section-heading quick-heading">
+            <div>
+                <span class="eyebrow">QUICK ACTIONS</span>
+                <h2>Take care of yourself</h2>
+            </div>
+        </div>
+
+        <div class="quick-grid">
+
+            <button class="quick-card" data-go="assessment">
+                <div>🩺</div>
+                <strong>Check Symptoms</strong>
+                <span>Analyze how you're feeling</span>
+            </button>
+
+            <button class="quick-card" data-go="tracker">
+                <div>💧</div>
+                <strong>Log Water</strong>
+                <span>Track today's hydration</span>
+            </button>
+
+            <button class="quick-card" data-go="recommendations">
+                <div>✦</div>
+                <strong>AI Recommendations</strong>
+                <span>Personalized wellness tips</span>
+            </button>
+
+            <button class="quick-card" data-go="profile">
+                <div>⚙</div>
+                <strong>Health Profile</strong>
+                <span>Update your information</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ASSESSMENT ================= -->
+
+    <section class="section" id="assessment">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">AI HEALTH ENGINE</span>
+                <h2>Health Assessment</h2>
+                <p>
+                    Tell us how you're feeling and we'll generate
+                    general wellness recommendations.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="assessment-layout">
+
+            <div class="panel assessment-card">
+
+                <div class="step-indicator">
+                    <span class="step active">1</span>
+                    <span></span>
+                    <span class="step">2</span>
+                    <span></span>
+                    <span class="step">3</span>
+                </div>
+
+
+                <!-- STEP 1 -->
+
+                <div class="assessment-step active" id="step1">
+
+                    <h3>How are you feeling today?</h3>
+
+                    <p class="muted">
+                        Select all symptoms that apply.
+                    </p>
+
+                    <div class="symptoms-grid">
+
+                        <label class="symptom">
+                            <input type="checkbox" value="headache">
+                            <span>🤕</span>
+                            Headache
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="fever">
+                            <span>🌡️</span>
+                            Fever
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="cough">
+                            <span>😷</span>
+                            Cough
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="fatigue">
+                            <span>🥱</span>
+                            Fatigue
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="sore_throat">
+                            <span>🗣️</span>
+                            Sore throat
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="stomach">
+                            <span>🤢</span>
+                            Stomach discomfort
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="stress">
+                            <span>😟</span>
+                            Stress
+                        </label>
+
+                        <label class="symptom">
+                            <input type="checkbox" value="sleep">
+                            <span>😴</span>
+                            Poor sleep
+                        </label>
+
+                    </div>
+
+                    <button class="primary-btn next-btn" data-next="2">
+                        Continue →
+                    </button>
+
+                </div>
+
+
+                <!-- STEP 2 -->
+
+                <div class="assessment-step" id="step2">
+
+                    <h3>Tell us about your lifestyle</h3>
+
+                    <p class="muted">
+                        This helps personalize your recommendations.
+                    </p>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Sleep per night</label>
+
+                            <select id="assessmentSleep">
+
+                                <option value="4">Less than 5 hours</option>
+                                <option value="6">5–6 hours</option>
+                                <option value="7.5" selected>7–8 hours</option>
+                                <option value="9">8–9 hours</option>
+                                <option value="10">More than 9 hours</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Daily activity</label>
+
+                            <select id="assessmentActivity">
+
+                                <option value="low">Mostly sedentary</option>
+                                <option value="medium" selected>Moderately active</option>
+                                <option value="high">Very active</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Water intake</label>
+
+                            <select id="assessmentWater">
+
+                                <option value="2">1–2 glasses</option>
+                                <option value="4" selected>3–4 glasses</option>
+                                <option value="6">5–6 glasses</option>
+                                <option value="8">7–8 glasses</option>
+                                <option value="10">9+ glasses</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Stress level</label>
+
+                            <select id="assessmentStress">
+
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Moderate</option>
+                                <option value="high">High</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="button-row">
+
+                        <button class="secondary-btn prev-btn" data-prev="1">
+                            ← Back
+                        </button>
+
+                        <button class="primary-btn next-btn" data-next="3">
+                            Continue →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STEP 3 -->
+
+                <div class="assessment-step" id="step3">
+
+                    <div class="analyzing">
+
+                        <div class="ai-loader">
+                            ✦
+                        </div>
+
+                        <h3>Analyzing your health profile...</h3>
+
+                        <p>
+                            Our recommendation engine is evaluating
+                            your symptoms and lifestyle data.
+                        </p>
+
+                        <div class="loading-bar">
+                            <div></div>
+                        </div>
+
+                    </div>
+
+                    <button class="primary-btn" id="generateBtn">
+                        Generate Recommendations
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel safety-panel">
+
+                <div class="safety-icon">
+                    🛡️
+                </div>
+
+                <h3>Your privacy matters</h3>
+
+                <p>
+                    Your assessment data is stored locally in your
+                    browser for this demo and isn't sent to a server.
+                </p>
+
+                <div class="privacy-list">
+                    <span>✓ Local browser storage</span>
+                    <span>✓ No account required</span>
+                    <span>✓ No data sharing</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RECOMMENDATIONS ================= -->
+
+    <section class="section" id="recommendations">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">PERSONALIZED FOR YOU</span>
+                <h2>AI Recommendations</h2>
+                <p id="recommendationSubtitle">
+                    Based on your latest health assessment.
+                </p>
+            </div>
+
+            <button class="primary-btn" data-go="assessment">
+                New Assessment
+            </button>
+
+        </div>
+
+
+        <div id="recommendationContainer">
+
+            <div class="recommendation-grid">
+
+                <div class="recommendation-card">
+
+                    <div class="rec-icon blue">💧</div>
+
+                    <span class="rec-category">HYDRATION</span>
+
+                    <h3>Stay hydrated</h3>
+
+                    <p>
+                        Aim for regular water intake throughout the day.
+                        Your current intake appears lower than the
+                        general daily target.
+                    </p>
+
+                    <div class="rec-action">
+                        <span>Priority</span>
+                        <strong>High</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="recommendation-card">
+
+                    <div class="rec-icon purple">😴</div>
+
+                    <span class="rec-category">SLEEP</span>
+
+                    <h3>Protect your sleep</h3>
+
+                    <p>
+                        Maintain a consistent sleep schedule and aim
+                        for approximately 7–9 hours of sleep.
+                    </p>
+
+                    <div class="rec-action">
+                        <span>Priority</span>
+                        <strong>Medium</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="recommendation-card">
+
+                    <div class="rec-icon green">🥗</div>
+
+                    <span class="rec-category">NUTRITION</span>
+
+                    <h3>Choose balanced meals</h3>
+
+                    <p>
+                        Include vegetables, fruits, whole grains and
+                        adequate protein in your meals.
+                    </p>
+
+                    <div class="rec-action">
+                        <span>Priority</span>
+                        <strong>Medium</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="recommendation-card">
+
+                    <div class="rec-icon orange">🏃</div>
+
+                    <span class="rec-category">ACTIVITY</span>
+
+                    <h3>Keep moving</h3>
+
+                    <p>
+                        Take short movement breaks and work toward
+                        regular moderate physical activity.
+                    </p>
+
+                    <div class="rec-action">
+                        <span>Priority</span>
+                        <strong>Medium</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="disclaimer">
+
+            <strong>⚠️ Important</strong>
+
+            <span>
+                These recommendations are for general wellness
+                purposes only and are not medical diagnoses.
+                Consult a qualified healthcare professional for
+                medical concerns.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TRACKER ================= -->
+
+    <section class="section" id="tracker">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">DAILY HABITS</span>
+                <h2>Health Tracker</h2>
+                <p>Track your daily wellness habits.</p>
+            </div>
+
+        </div>
+
+
+        <div class="tracker-grid">
+
+            <!-- WATER -->
+
+            <div class="tracker-card">
+
+                <div class="tracker-header">
+
+                    <div>
+                        <span class="eyebrow">HYDRATION</span>
+                        <h3>Water Intake</h3>
+                    </div>
+
+                    <div class="tracker-big-icon">💧</div>
+
+                </div>
+
+                <div class="tracker-number">
+                    <strong id="trackerWater">4</strong>
+                    <span>/ 8 glasses</span>
+                </div>
+
+                <div class="water-glasses" id="waterGlasses">
+
+                    <button data-glass="1">1</button>
+                    <button data-glass="2">2</button>
+                    <button data-glass="3">3</button>
+                    <button data-glass="4">4</button>
+                    <button data-glass="5">5</button>
+                    <button data-glass="6">6</button>
+                    <button data-glass="7">7</button>
+                    <button data-glass="8">8</button>
+
+                </div>
+
+                <p>
+                    Click a glass to update your intake.
+                </p>
+
+            </div>
+
+
+            <!-- SLEEP -->
+
+            <div class="tracker-card">
+
+                <div class="tracker-header">
+
+                    <div>
+                        <span class="eyebrow">RECOVERY</span>
+                        <h3>Sleep</h3>
+                    </div>
+
+                    <div class="tracker-big-icon">😴</div>
+
+                </div>
+
+                <div class="range-wrapper">
+
+                    <input
+                        type="range"
+                        min="3"
+                        max="12"
+                        step="0.1"
+                        value="7.2"
+                        id="sleepRange"
+                    >
+
+                    <div class="range-labels">
+                        <span>3h</span>
+                        <strong id="sleepRangeValue">7.2 hours</strong>
+                        <span>12h</span>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn full-btn" id="saveSleep">
+                    Save Sleep
+                </button>
+
+            </div>
+
+
+            <!-- STEPS -->
+
+            <div class="tracker-card">
+
+                <div class="tracker-header">
+
+                    <div>
+                        <span class="eyebrow">ACTIVITY</span>
+                        <h3>Daily Steps</h3>
+                    </div>
+
+                    <div class="tracker-big-icon">🏃</div>
+
+                </div>
+
+                <div class="tracker-number">
+
+                    <strong id="trackerSteps">6842</strong>
+                    <span>/ 8000</span>
+
+                </div>
+
+                <div class="progress large-progress">
+
+                    <div
+                        class="progress-fill orange-fill"
+                        id="trackerStepsProgress"
+                    ></div>
+
+                </div>
+
+                <button class="secondary-btn full-btn" id="addSteps">
+                    + 500 Steps
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HISTORY ================= -->
+
+    <section class="section" id="history">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">YOUR DATA</span>
+                <h2>Assessment History</h2>
+                <p>Your previous health assessments.</p>
+            </div>
+
+            <button class="secondary-btn" id="clearHistory">
+                Clear History
+            </button>
+
+        </div>
+
+
+        <div class="panel history-panel">
+
+            <div id="historyContainer">
+
+                <div class="empty-state">
+
+                    <div>📋</div>
+
+                    <h3>No assessments yet</h3>
+
+                    <p>
+                        Complete your first health assessment to
+                        see your history here.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        data-go="assessment"
+                    >
+                        Start Assessment
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section class="section" id="profile">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">PERSONAL INFORMATION</span>
+                <h2>Health Profile</h2>
+                <p>Keep your basic information up to date.</p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-layout">
+
+            <div class="panel profile-card">
+
+                <div class="profile-header">
+
+                    <div class="profile-avatar" id="profileAvatar">
+                        N
+                    </div>
+
+                    <div>
+                        <h3 id="profileDisplayName">
+                            Niranjan
+                        </h3>
+
+                        <p>
+                            Personal Health Profile
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="nameInput"
+                            placeholder="Enter your name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Age</label>
+
+                        <input
+                            type="number"
+                            id="ageInput"
+                            placeholder="Age"
+                            min="1"
+                            max="120"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Height (cm)</label>
+
+                        <input
+                            type="number"
+                            id="heightInput"
+                            placeholder="Height"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Weight (kg)</label>
+
+                        <input
+                            type="number"
+                            id="weightInput"
+                            placeholder="Weight"
+                    >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Gender</label>
+
+                        <select id="genderInput">
+
+                            <option value="">Prefer not to say</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Primary Goal</label>
+
+                        <select id="goalInput">
+
+                            <option value="general">
+                                General wellness
+                            </option>
+
+                            <option value="fitness">
+                                Improve fitness
+                            </option>
+
+                            <option value="weight">
+                                Healthy weight management
+                            </option>
+
+                            <option value="sleep">
+                                Improve sleep
+                            </option>
+
+                            <option value="stress">
+                                Manage stress
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button class="primary-btn" id="saveProfile">
+                    Save Profile
+                </button>
+
+            </div>
+
+
+            <div class="panel bmi-card">
+
+                <span class="eyebrow">BODY METRICS</span>
+
+                <h3>BMI Calculator</h3>
+
+                <div class="bmi-number" id="bmiValue">
+                    --
+                </div>
+
+                <div class="bmi-label" id="bmiLabel">
+                    Enter height and weight
+                </div>
+
+                <div class="bmi-scale">
+
+                    <span>Under</span>
+                    <span>Normal</span>
+                    <span>Over</span>
+
+                </div>
+
+                <div class="bmi-bar">
+                    <div id="bmiIndicator"></div>
+                </div>
+
+                <p>
+                    BMI is a general screening measurement and should
+                    not be used alone to determine health status.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= EMERGENCY MODAL ================= -->
+
+<div class="modal-overlay" id="emergencyModal">
+
+    <div class="emergency-modal">
+
+        <div class="emergency-symbol">
+            !
+        </div>
+
+        <h2>Seek immediate medical attention</h2>
+
+        <p>
+            Some symptoms can indicate a medical emergency.
+            This application cannot determine whether your
+            condition is serious.
+        </p>
+
+        <p>
+            If you believe you are experiencing an emergency,
+            contact your local emergency service or seek immediate
+            professional medical care.
+        </p>
+
+        <button class="primary-btn full-btn" id="closeEmergency">
+            I Understand
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast">
+
+    <span>✓</span>
+
+    <div>
+        <strong id="toastTitle">Success</strong>
+        <p id="toastMessage">Saved successfully.</p>
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
