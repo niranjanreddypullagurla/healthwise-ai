@@ -12,7 +12,7 @@ const defaultState = {
 
     profile: {
 
-        name: "Niranjan",
+        name: "om prakash",
         age: "",
         height: "",
         weight: "",
@@ -307,7 +307,7 @@ function loadProfile() {
 function updateProfileUI() {
 
     const name =
-        state.profile.name || "Niranjan";
+        state.profile.name || "Om Prakash Varma";
 
 
     $("#headerName").textContent =
@@ -342,7 +342,7 @@ function saveProfile() {
     state.profile = {
 
         name: $("#nameInput").value.trim()
-            || "Niranjan",
+            || "Om prakash",
 
         age: $("#ageInput").value,
 
